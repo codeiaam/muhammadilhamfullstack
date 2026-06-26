@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Ilham — Full-Stack Developer & Automation Specialist</title>
+    <!-- Menggunakan Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern CSS Variables (Supporting Light and Dark Mode) */
+        :root {
+            --bg-color: #fcfbf9;     
+            --text-main: #111111;    
+            --text-muted: #666666;   
+            --border-color: #e8e6e2; 
+            --card-bg: #ffffff;
+            --tag-bg: #f0ede9;
+            --tag-text: #4a4947;
+            --badge-bg: #e8f5e9;
+            --badge-text: #2e7d32;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;     
+            --text-main: #f5f5f5;    
+            --text-muted: #a0a0a0;   
+            --border-color: #2c2c2c; 
+            --card-bg: #1e1e1e;
+            --tag-bg: #2a2a2a;
+            --tag-text: #e0e0e0;
+            --badge-bg: #1b2e1e;
+            --badge-text: #81c784;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: clamp(40px, 8vw, 80px) clamp(16px, 4vw, 24px);
+            letter-spacing: -0.01em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Navigation & JavaScript Theme Toggle Button */
+        .nav-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 40px;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .theme-toggle-btn:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        /* Header / Hero Section */
+        header {
+            margin-bottom: clamp(40px, 8vw, 70px);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--badge-text);
+            background-color: var(--badge-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #4caf50;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: clamp(1.1rem, 3vw, 1.2rem);
+            font-weight: 300;
+        }
+
+        /* Section Global Typography */
+        section {
+            margin-bottom: clamp(48px, 7vw, 64px);
+        }
+
+        section h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #a09e9a;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .about-text {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        /* Services Offered (Fluid row-to-column) */
+        .services-list {
+            margin-top: 8px;
+        }
+
+        .service-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .service-item:first-child {
+            border-top: 1px solid var(--border-color);
+        }
+
+        .service-title {
+            font-weight: 500;
+            font-size: 1rem;
+            flex: 0 0 40%;
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            flex: 0 0 60%;
+        }
+
+        /* Projects Cards Premium */
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: clamp(20px, 4vw, 28px);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--text-main);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            gap: 12px;
+        }
+
+        .project-card h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .project-arrow {
+            font-size: 1.2rem;
+            color: #b3b1ad;
+            transition: transform 0.2s ease;
+        }
+
+        .project-card:hover .project-arrow {
+            transform: translateX(4px);
+            color: var(--text-main);
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .tag-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--tag-bg);
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border-radius: 6px;
+            color: var(--tag-text);
+            font-weight: 500;
+        }
+
+        /* Contact & Connect Links (Responsive Grid) */
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .connect-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .connect-btn:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+            border-color: var(--text-main);
+        }
+
+        footer {
+            margin-top: clamp(60px, 10vw, 100px);
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: #a09e9a;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
+            .service-item {
+                flex-direction: column;
+                gap: 4px;
+                padding: 16px 0;
+            }
+            .service-title { width: 100%; }
+            .service-desc { width: 100%; }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation Theme Toggle -->
+        <div class="nav-container">
+            <button class="theme-toggle-btn" id="themeToggle">Switch Theme</button>
+        </div>
+
+        <!-- Hero Section -->
+        <header>
+            <div class="status-badge">
+                <span class="status-dot"></span> Available for Projects
+            </div>
+            <h1>Muhammad Ilham</h1>
+            <p>Full-Stack Developer & Automation Specialist</p>
+        </header>
+
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p class="about-text">
+                I engineer seamless web solutions by fusing advanced development, intelligent workflow automation, and high-conversion design. Leveraging technical logic and AI efficiency, I build custom digital tools that optimize business operations and captivate audiences.
+            </p>
+        </section>
+
+        <!-- Expertise -->
+        <section>
+            <h2>Core Expertise</h2>
+            <div class="services-list">
+                <div class="service-item">
+                    <div class="service-title">Full-Stack Web Dev</div>
+                    <div class="service-desc">Building modular, database-driven web applications and fully operational MVP prototypes using modern Next.js and Python architectures.</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-title">Web Automation</div>
+                    <div class="service-desc">Developing custom scripts to scrape data, integrate custom REST APIs, and eliminate repetitive tasks to accelerate business growth.</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-title">Landing Page Design</div>
+                    <div class="service-desc">Crafting pixel-perfect, highly responsive web interfaces with a strong focus on clean minimalism, typography, and flawless conversions.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selected Work -->
+        <section>
+            <h2>Featured Projects</h2>
+            
+            <!-- Project 1: Full-Stack -->
+            <a href="#" class="project-card">
+                <div class="project-header">
+                    <h3>Interactive Analytics SaaS Dashboard</h3>
+                    <div class="project-arrow">→</div>
+                </div>
+                <p>A comprehensive full-stack MVP application featuring secure user routing, live data sorting tables, and an intuitive, touch-optimized admin controls system.</p>
+                <div class="tag-group">
+                    <span class="tag">Next.js / React</span>
+                    <span class="tag">JavaScript (ES6+)</span>
+                    <span class="tag">Full-Stack MVP</span>
+                </div>
+            </a>
+
+            <!-- Project 2: Web Automation -->
+            <a href="#" class="project-card">
+                <div class="project-header">
+                    <h3>Intelligent Data Scraping & API Engine</h3>
+                    <div class="project-arrow">→</div>
+                </div>
+                <p>A resilient Python-based automation worker that targets e-commerce data structures, extracts core metrics, and updates remote databases automatically via custom endpoints.</p>
+                <div class="tag-group">
+                    <span class="tag">Python</span>
+                    <span class="tag">Web Automation</span>
+                    <span class="tag">API Integration</span>
+                </div>
+            </a>
+
+            <!-- Project 3: Landing Page Design -->
+            <a href="#" class="project-card">
+                <div class="project-header">
+                    <h3>Premium Conversion-Focused Landing Page</h3>
+                    <div class="project-arrow">→</div>
+                </div>
+                <p>An editorial-grade web layout built from scratch. Features ultra-responsive layout scaling, advanced fluid CSS mechanics, and tailored interactivity for high engagement.</p>
+                <div class="tag-group">
+                    <span class="tag">HTML5 / CSS3</span>
+                    <span class="tag">Landing Page Design</span>
+                    <span class="tag">UI/UX Aesthetics</span>
+                </div>
+            </a>
+        </section>
+
+        <!-- Connect Links -->
+        <section>
+            <h2>Connect</h2>
+            <div class="connect-grid">
+                <a href="#" class="connect-btn" target="_blank">Fiverr Profile</a>
+                <a href="#" class="connect-btn" target="_blank">GitHub</a>
+                <a href="mailto:emailkamu@gmail.com" class="connect-btn">Email Me</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Muhammad Ilham.</p>
+            <p>Engineered via Vibe Coding.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript logic to power the front-end interactions -->
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggleBtn.textContent = 'Light Mode';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggleBtn.textContent = 'Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggleBtn.textContent = 'Light Mode';
+            }
+        });
+    </script>
+</body>
+</html>
